@@ -26,8 +26,9 @@ import { StickToBottom, useStickToBottomContext } from "use-stick-to-bottom";
 import ThreadHistory from "./history";
 import { toast } from "sonner";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { Label } from "../ui/label";
-import { Switch } from "../ui/switch";
+import MCPConfigPopover from "../popovers/mcp-config-popover";
+
+
 
 function StickyToBottomContent(props: {
   content: ReactNode;
@@ -291,7 +292,7 @@ export function Thread() {
               !chatStarted && "flex flex-col items-stretch mt-[25vh]",
               chatStarted && "grid grid-rows-[1fr_auto]",
             )}
-            contentClassName="pt-8 pb-16  max-w-3xl mx-auto flex flex-col gap-4 w-full"
+            contentClassName="pt-8 pb-16 max-w-3xl mx-auto flex flex-col gap-4 w-full"
             content={
               <>
                 {messages
@@ -351,21 +352,7 @@ export function Thread() {
                     />
 
                     <div className="flex items-center justify-between p-2 pt-4">
-                      <div>
-                        <div className="flex items-center space-x-2">
-                          <Switch
-                            id="render-tool-calls"
-                            checked={hideToolCalls ?? false}
-                            onCheckedChange={setHideToolCalls}
-                          />
-                          <Label
-                            htmlFor="render-tool-calls"
-                            className="text-sm text-gray-600"
-                          >
-                            Hide Tool Calls
-                          </Label>
-                        </div>
-                      </div>
+                      <MCPConfigPopover />
                       {stream.isLoading ? (
                         <Button key="stop" onClick={() => stream.stop()}>
                           <LoaderCircle className="w-4 h-4 animate-spin" />
