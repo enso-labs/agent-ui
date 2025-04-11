@@ -28,7 +28,7 @@ import { toast } from "sonner";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Label } from "../ui/label";
 import { Switch } from "../ui/switch";
-
+import { ModeToggle } from "../buttons/mode-toggle";
 function StickyToBottomContent(props: {
   content: ReactNode;
   footer?: ReactNode;
@@ -231,6 +231,7 @@ export function Thread() {
                 )}
               </Button>
             )}
+            <ModeToggle />
           </div>
         )}
         {chatStarted && (
